@@ -11,9 +11,16 @@
     "preview": "vite preview",
     "prepare": "husky install"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "react": "^18.2.0",
