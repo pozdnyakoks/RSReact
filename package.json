@@ -17,9 +17,8 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "git add"
+    "src/**/*.{js,ts,jsx,tsx}": [
+      "npm run lint:fix"
     ]
   },
   "dependencies": {
