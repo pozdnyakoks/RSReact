@@ -1,16 +1,14 @@
 import React from 'react';
 
-type TSearchItem = {
-  name: string;
-  desc: string;
-};
+import { TSearchItem } from '../utils/types';
 
 class SearchItem extends React.Component<TSearchItem> {
   render() {
     return (
       <li>
-        <h2>{this.props.name}</h2>
-        <p>{this.props.desc}</p>
+        <h2>{this.props.title}</h2>
+        <p>{this.props.year}</p>
+        <img src={this.props.poster} />
       </li>
     );
   }
