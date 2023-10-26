@@ -1,7 +1,7 @@
 export type TSearchItem = {
-  title: string;
-  year: string;
-  poster: string;
+  name: string;
+  birth_year: string;
+  gender: string;
 };
 
-export type TList = TSearchItem[];
+export type TList = { data: TSearchItem[] };

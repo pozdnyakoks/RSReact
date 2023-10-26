@@ -1,21 +1,29 @@
 import React from 'react';
 import SearchItem from './SearchItem';
 
-// https://www.omdbapi.com/?apikey=8f38710c&s=game&page=100
-
 import { TList } from '../utils/types';
 
 class List extends React.Component<TList> {
   render() {
-    const list = this.props.map((el) => (
+    console.log(this.props.data);
+    const list = this.props.data.map((el) => (
       <SearchItem
-        key={el.poster}
-        title={el.title}
-        poster={el.poster}
-        year={el.year}
+        key={el.name}
+        name={el.name}
+        birth_year={el.birth_year}
+        gender={el.gender}
       />
     ));
-    return <ul>{list}</ul>;
+
+    return (
+      <ul>
+        {list.length > 0 ? (
+          list
+        ) : (
+          <img src="/loader.svg" alt="loader" className="loader" />
+        )}
+      </ul>
+    );
   }
 }
 
