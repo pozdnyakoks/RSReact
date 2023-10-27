@@ -1,39 +1,26 @@
 import React from 'react';
 
-class Search extends React.Component {
-  state = {
-    value: '',
-  };
-
-  componentDidMount(): void {
-    const lsValue = localStorage.getItem('searchItem');
-    if (lsValue !== null) {
-      this.setState({
-        value: lsValue,
-      });
-    }
-  }
-
+class Search extends React.Component<{
+  value: string;
+  setState: (value: string) => void;
+  getData: (value: string) => void;
+}> {
   handleClick(e: React.MouseEvent) {
     e.preventDefault();
-    localStorage.setItem('searchItem', this.state.value);
-    this.setState({
-      value: '',
-    });
+    localStorage.setItem('searchItem', this.props.value);
+    this.props.getData(this.props.value);
   }
 
   handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const newValue = e.target.value;
-    this.setState({
-      value: newValue,
-    });
+    this.props.setState(newValue);
   }
 
   render() {
     return (
       <div>
         <input
-          value={this.state.value}
+          value={this.props.value}
           onChange={(e) => this.handleChange(e)}
           type="text"
           className="search-input"

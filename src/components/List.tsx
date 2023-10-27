@@ -5,7 +5,6 @@ import { TList } from '../utils/types';
 
 class List extends React.Component<TList> {
   render() {
-    console.log(this.props.data);
     const list = this.props.data.map((el) => (
       <SearchItem
         key={el.name}
