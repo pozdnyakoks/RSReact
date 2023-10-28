@@ -10,6 +10,7 @@ class App extends React.Component {
     data: null,
     value: '',
     isError: false,
+    isLoading: false,
   };
 
   componentDidMount(): void {
@@ -37,6 +38,7 @@ class App extends React.Component {
   };
 
   getData = (value: string) => {
+    this.setState({ isLoading: true });
     const url =
       value === ''
         ? 'https://swapi.dev/api/people/'
@@ -46,12 +48,15 @@ class App extends React.Component {
         if (res.status === 404) this.setState({ isError: true });
         return res.json();
       })
-      .then((data) => this.setState({ data: data.results }));
+      .then((data) => {
+        this.setState({ data: data.results });
+        this.setState({ isLoading: false });
+      });
   };
 
   render() {
     return (
-      <div>
+      <div className="container">
         <Search
           value={this.state.value}
           setState={(val) => this.changeState(val)}
@@ -59,7 +64,11 @@ class App extends React.Component {
         />
         <ErrorBoundary>
           <ErrorButton onClick={this.errorMaker} />
-          <List data={this.state.data} isError={this.state.isError} />
+          <List
+            data={this.state.data}
+            isError={this.state.isError}
+            isLoading={this.state.isLoading}
+          />
         </ErrorBoundary>
       </div>
     );

@@ -4,5 +4,8 @@ export type TSearchItem = {
   gender: string;
 };
 
-export type TList = { data: TSearchItem[] | null; isError: boolean };
-// export type TError = { isError: boolean };
+export type TList = {
+  data: TSearchItem[] | null;
+  isError: boolean;
+  isLoading: boolean;
+};

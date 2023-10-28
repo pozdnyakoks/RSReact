@@ -19,15 +19,15 @@ class List extends React.Component<TList> {
         : null;
 
     return (
-      <ul>
-        {list === null ? (
+      <ol className="list">
+        {this.props.isLoading ? (
           <img src="/loader.svg" alt="loader" className="loader" />
-        ) : list.length === 0 ? (
+        ) : list !== null && list.length === 0 ? (
           'Sorry, nothing is here'
         ) : (
           list
         )}
-      </ul>
+      </ol>
     );
   }
 }

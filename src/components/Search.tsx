@@ -7,8 +7,9 @@ class Search extends React.Component<{
 }> {
   handleClick(e: React.MouseEvent) {
     e.preventDefault();
-    localStorage.setItem('searchItem', this.props.value);
-    this.props.getData(this.props.value);
+    localStorage.setItem('searchItem', this.props.value.trim());
+    this.props.getData(this.props.value.trim());
+    this.props.setState(this.props.value.trim());
   }
 
   handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -18,12 +19,13 @@ class Search extends React.Component<{
 
   render() {
     return (
-      <div>
+      <div className="input-box">
         <input
           value={this.props.value}
           onChange={(e) => this.handleChange(e)}
           type="text"
           className="search-input"
+          placeholder="Star Wars Character"
         />
         <button className="search-btn" onClick={(e) => this.handleClick(e)}>
           Search

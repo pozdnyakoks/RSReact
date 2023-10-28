@@ -5,10 +5,16 @@ import { TSearchItem } from '../utils/types';
 class SearchItem extends React.Component<TSearchItem> {
   render() {
     return (
-      <li>
-        <h2>Name: {this.props.name}</h2>
-        <p>Birth year: {this.props.birth_year}</p>
-        <p>Gender: {this.props.gender}</p>
+      <li className="list-item">
+        <h2>
+          <span>Name:</span> {this.props.name}
+        </h2>
+        <p>
+          <span>Birth year:</span> {this.props.birth_year}
+        </p>
+        <p>
+          <span>Gender:</span> {this.props.gender}
+        </p>
       </li>
     );
   }
