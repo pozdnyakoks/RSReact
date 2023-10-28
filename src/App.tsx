@@ -2,11 +2,14 @@ import React from 'react';
 import './App.css';
 import Search from './components/Search';
 import List from './components/List';
+import ErrorBoundary from './components/ErrorBoundary';
+import ErrorButton from './components/ErrorButton';
 
 class App extends React.Component {
   state = {
-    data: [],
+    data: null,
     value: '',
+    isError: false,
   };
 
   componentDidMount(): void {
@@ -19,11 +22,19 @@ class App extends React.Component {
     }
   }
 
-  changeState(newValue: string) {
+  changeState = (newValue: string) => {
     this.setState({
       value: newValue,
     });
-  }
+  };
+
+  errorMaker = () => {
+    try {
+      throw new Error('oops');
+    } catch (error) {
+      this.setState({ isError: true });
+    }
+  };
 
   getData = (value: string) => {
     const url =
@@ -31,7 +42,10 @@ class App extends React.Component {
         ? 'https://swapi.dev/api/people/'
         : `https://swapi.dev/api/people/?search=${value}`;
     fetch(url)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 404) this.setState({ isError: true });
+        return res.json();
+      })
       .then((data) => this.setState({ data: data.results }));
   };
 
@@ -43,7 +57,10 @@ class App extends React.Component {
           setState={(val) => this.changeState(val)}
           getData={() => this.getData(this.state.value)}
         />
-        <List data={this.state.data} />
+        <ErrorBoundary>
+          <ErrorButton onClick={this.errorMaker} />
+          <List data={this.state.data} isError={this.state.isError} />
+        </ErrorBoundary>
       </div>
     );
   }
