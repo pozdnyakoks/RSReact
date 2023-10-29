@@ -3,7 +3,7 @@ import React from 'react';
 import { TSearchItem } from '../utils/types';
 
 class SearchItem extends React.Component<TSearchItem> {
-  render() {
+  render(): JSX.Element {
     return (
       <li className="list-item">
         <h2>

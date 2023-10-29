@@ -5,19 +5,19 @@ class Search extends React.Component<{
   setState: (value: string) => void;
   getData: (value: string) => void;
 }> {
-  handleClick(e: React.MouseEvent) {
+  handleClick(e: React.MouseEvent): void {
     e.preventDefault();
     localStorage.setItem('searchItem', this.props.value.trim());
     this.props.getData(this.props.value.trim());
     this.props.setState(this.props.value.trim());
   }
 
-  handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const newValue = e.target.value;
+  handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
+    const newValue: string = e.target.value;
     this.props.setState(newValue);
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div className="input-box">
         <input

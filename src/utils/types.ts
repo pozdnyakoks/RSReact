@@ -9,3 +9,10 @@ export type TList = {
   isError: boolean;
   isLoading: boolean;
 };
+
+export type TState = {
+  data: null | TSearchItem[];
+  value: string;
+  isError: boolean;
+  isLoading: boolean;
+};

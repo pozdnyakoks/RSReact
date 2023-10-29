@@ -20,7 +20,11 @@ export default class ErrorBoundary extends React.Component<Props, State> {
   render() {
     if (this.state.hasError) {
       console.log('error boundary catch error');
-      return <h1>Something went wrong from error boundary.</h1>;
+      return (
+        <h1 className="error-title">
+          Something went wrong from error boundary. Please reload page
+        </h1>
+      );
     }
 
     return this.props.children;

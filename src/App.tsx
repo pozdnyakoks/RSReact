@@ -4,9 +4,10 @@ import Search from './components/Search';
 import List from './components/List';
 import ErrorBoundary from './components/ErrorBoundary';
 import ErrorButton from './components/ErrorButton';
+import { TState } from './utils/types';
 
 class App extends React.Component {
-  state = {
+  state: TState = {
     data: null,
     value: '',
     isError: false,
@@ -14,7 +15,7 @@ class App extends React.Component {
   };
 
   componentDidMount(): void {
-    const lsValue = localStorage.getItem('searchItem');
+    const lsValue: string | null = localStorage.getItem('searchItem');
     if (lsValue !== null) {
       this.setState({ value: lsValue });
       this.getData(lsValue);
@@ -23,13 +24,13 @@ class App extends React.Component {
     }
   }
 
-  changeState = (newValue: string) => {
+  changeState = (newValue: string): void => {
     this.setState({
       value: newValue,
     });
   };
 
-  errorMaker = () => {
+  errorMaker = (): void => {
     try {
       throw new Error('oops');
     } catch (error) {
@@ -37,9 +38,9 @@ class App extends React.Component {
     }
   };
 
-  getData = (value: string) => {
+  getData = (value: string): void => {
     this.setState({ isLoading: true });
-    const url =
+    const url: string =
       value === ''
         ? 'https://swapi.dev/api/people/'
         : `https://swapi.dev/api/people/?search=${value}`;
@@ -54,7 +55,7 @@ class App extends React.Component {
       });
   };
 
-  render() {
+  render(): JSX.Element {
     return (
       <div className="container">
         <Search

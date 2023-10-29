@@ -1,14 +1,14 @@
 import React from 'react';
 import SearchItem from './SearchItem';
 
-import { TList } from '../utils/types';
+import { TList, TSearchItem } from '../utils/types';
 
 class List extends React.Component<TList> {
-  render() {
+  render(): JSX.Element {
     if (this.props.isError) throw new Error('Error in url');
-    const list =
+    const list: JSX.Element[] | null =
       this.props.data !== null
-        ? this.props.data.map((el) => (
+        ? this.props.data.map((el: TSearchItem) => (
             <SearchItem
               key={el.name}
               name={el.name}
