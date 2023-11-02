@@ -28,7 +28,7 @@ function Search({
         onChange={(e) => handleChange(e)}
         type="text"
         className="search-input"
-        placeholder="Star Wars Character"
+        placeholder="Enter product name"
       />
       <button className="search-btn" onClick={(e) => handleClick(e)}>
         Search

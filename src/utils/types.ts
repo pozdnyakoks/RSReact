@@ -1,7 +1,8 @@
 export type TSearchItem = {
-  name: string;
-  birth_year: string;
-  gender: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  id: number;
 };
 
 export type TList = {
@@ -15,4 +16,11 @@ export type TState = {
   value: string;
   isError: boolean;
   isLoading: boolean;
+};
+
+export type TData = {
+  limit: number;
+  products: TSearchItem[];
+  skip: number;
+  total: number;
 };

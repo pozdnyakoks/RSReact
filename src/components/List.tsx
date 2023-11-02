@@ -8,10 +8,11 @@ function List(props: TList) {
     props.data !== null
       ? props.data.map((el: TSearchItem) => (
           <SearchItem
-            key={el.name}
-            name={el.name}
-            birth_year={el.birth_year}
-            gender={el.gender}
+            key={el.id}
+            title={el.title}
+            description={el.description}
+            thumbnail={el.thumbnail}
+            id={el.id}
           />
         ))
       : null;
