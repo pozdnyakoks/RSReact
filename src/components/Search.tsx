@@ -4,10 +4,12 @@ function Search({
   value,
   setState,
   getData,
+  setCurrentPage,
 }: {
   value: string;
   setState: (value: string) => void;
   getData: (value: string) => void;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
   function handleClick(e: React.MouseEvent): void {
     e.preventDefault();
@@ -19,6 +21,7 @@ function Search({
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const newValue: string = e.target.value;
     setState(newValue);
+    setCurrentPage(1);
   }
 
   return (

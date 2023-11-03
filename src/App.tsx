@@ -5,12 +5,12 @@ import List from './components/List';
 import ErrorBoundary from './components/ErrorBoundary';
 import ErrorButton from './components/ErrorButton';
 import { ChooseCount } from './components/ChooseCount';
-// import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { TData } from './utils/types';
 import { PaginationButton } from './components/PaginationButton';
 
 function App() {
-  // const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [data, setData] = useState<TData | null>(null);
   const [value, setValue] = useState('');
   const [error, setError] = useState(false);
@@ -25,14 +25,16 @@ function App() {
 
   function getData(value: string): void {
     setIsLoading(true);
+    console.log(value);
     const url: string =
       value === ''
         ? `https://dummyjson.com/products?skip=${
             (currentPage - 1) * Number(pageItems)
           }&limit=${pageItems}`
-        : `https://dummyjson.com/products?skip=${
+        : `https://dummyjson.com/products/search?q=${value}&?skip=${
             (currentPage - 1) * Number(pageItems)
-          }&limit=${pageItems}&search?q=${value}`;
+          }&limit=${pageItems}`;
+    console.log(url);
     fetch(url)
       .then((res) => {
         if (res.status === 404) setError(true);
@@ -53,8 +55,8 @@ function App() {
     } else {
       getData(value);
     }
-    // setSearchParams({ page: String(currentPage) });
-  }, [pageItems]);
+    setSearchParams({ page: String(currentPage) });
+  }, [pageItems, currentPage]);
 
   function changeState(newValue: string): void {
     setValue(newValue);
@@ -74,6 +76,7 @@ function App() {
         value={value}
         setState={(val) => changeState(val)}
         getData={() => getData(value)}
+        setCurrentPage={setCurrentPage}
       />
       <ChooseCount
         value={pageItems}
@@ -93,7 +96,13 @@ function App() {
             {Array(Math.ceil(data.total / data.limit))
               .fill(1)
               .map((el, index) => (
-                <PaginationButton key={index} value={String(index + 1)} />
+                <PaginationButton
+                  searchParams={searchParams}
+                  setSearchParams={setSearchParams}
+                  key={index}
+                  value={String(index + 1)}
+                  setCurrentPage={setCurrentPage}
+                />
               ))}
           </div>
         )}

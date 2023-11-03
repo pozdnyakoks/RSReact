@@ -13,7 +13,7 @@ export function ChooseCount({
   };
 
   return (
-    <div>
+    <div className="choose-radios">
       <label>
         <input
           type="radio"

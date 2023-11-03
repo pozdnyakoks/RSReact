@@ -12,19 +12,28 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    // loader: rootLoader
+    // children: [
+    //   {
+    // path: '',
+    //     element: '',
+    //     // loader: '',
+    //     children: [
+    //       {
+    //         path: ':id',
+    //         element: '',
+    //         // loader: '',
+    //       },
+    //     ],
+    //   },
+    // ],
   },
-  // {
-  //   path: 'about',
-  //   element: <div>About</div>,
-  // },
+  {
+    path: 'search',
+    element: <div>About</div>,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <RouterProvider router={router} />
 );
-
-// ReactDOM.createRoot(document.getElementById('root')!).render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
