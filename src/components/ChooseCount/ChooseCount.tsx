@@ -9,7 +9,7 @@ export function ChooseCount({
   setValue: (ev: React.ChangeEvent<HTMLInputElement>) => void;
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const changeValue = (ev: React.ChangeEvent<HTMLInputElement>) => {
+  const changeValue = (ev: React.ChangeEvent<HTMLInputElement>): void => {
     setValue(ev);
     setPage(1);
   };

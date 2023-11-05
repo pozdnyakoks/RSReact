@@ -5,7 +5,7 @@ import List from './components/List/List';
 import ErrorBoundary from './components/ErrorBoundary';
 import ErrorButton from './components/ErrorButton/ErrorButton';
 import { ChooseCount } from './components/ChooseCount/ChooseCount';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams, useNavigate } from 'react-router-dom';
 import { TData } from './utils/types';
 import errorMaker from './utils/ErrorMaker';
 import PaginationButtons from './components/PaginationButtons/PaginationButtons';
@@ -18,9 +18,11 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [pageItems, setPageItems] = useState('15');
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   function getData(value: string): void {
     setIsLoading(true);
+
     const url: string =
       value === ''
         ? `https://dummyjson.com/products?skip=${
@@ -39,6 +41,10 @@ function App() {
         setIsLoading(false);
       });
   }
+
+  useEffect(() => {
+    navigate('/search');
+  }, []);
 
   useEffect((): void => {
     const lsValue: string | null = localStorage.getItem('searchItem');

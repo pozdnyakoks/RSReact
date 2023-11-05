@@ -10,7 +10,7 @@ export default function ModalItem() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const product = searchParams.get('item');
+    const product: string | null = searchParams.get('item');
     product ? setShowModal(true) : setShowModal(false);
     if (product) {
       const url = `https://dummyjson.com/products/${product}`;

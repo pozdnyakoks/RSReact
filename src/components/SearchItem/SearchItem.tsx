@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import { TSearchItem } from '../../utils/types';
 import './SearchItem.scss';
@@ -6,8 +5,8 @@ import './SearchItem.scss';
 function SearchItem(props: TSearchItem) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  function clickHandler() {
-    const curPage = searchParams.get('page');
+  function clickHandler(): void {
+    const curPage: string | null = searchParams.get('page');
     if (curPage !== null) {
       setSearchParams({ page: curPage, item: String(props.id) });
     }
@@ -18,7 +17,6 @@ function SearchItem(props: TSearchItem) {
       <div onClick={clickHandler}>
         <h2>{props.title}</h2>
         <p>{props.description}</p>
-        {/* <img src={props.thumbnail} alt={props.title} /> */}
       </div>
     </li>
   );

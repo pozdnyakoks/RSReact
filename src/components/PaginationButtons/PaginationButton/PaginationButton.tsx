@@ -17,7 +17,7 @@ export const PaginationButton = ({
     setCurrentPage(Number(value));
   }
 
-  const isCurrent = searchParams.get('page') === value;
+  const isCurrent: boolean = searchParams.get('page') === value;
 
   return (
     <button onClick={() => changePage()} className={isCurrent ? 'active' : ''}>
