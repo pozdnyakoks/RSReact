@@ -7,10 +7,11 @@ import './ModalItem.scss';
 export default function ModalItem() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [item, setItem] = useState<TItem | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const product = searchParams.get('item');
-    console.log(product);
+    product ? setShowModal(true) : setShowModal(false);
     if (product) {
       const url = `https://dummyjson.com/products/${product}`;
       fetch(url)
@@ -19,7 +20,6 @@ export default function ModalItem() {
           setItem(data);
         });
     }
-    console.log(item);
   }, [searchParams]);
 
   function clickHandler() {
@@ -27,17 +27,26 @@ export default function ModalItem() {
     searchParams.delete('item');
     setSearchParams(searchParams);
   }
-
+  0;
   return (
-    <div className={`modal ${item ?? 'none'}`}>
-      {item && (
-        <div className="modal-item">
-          <button onClick={clickHandler}>
-            <img className="close-img" src={Close} alt="close" />
-          </button>
-          <h2>{item.title}</h2>
-        </div>
-      )}
+    <div className={`modal ${showModal ? '' : 'none'}`}>
+      <div className="modal-item">
+        {item ? (
+          <>
+            <button onClick={clickHandler} className="close-img">
+              <img src={Close} alt="close" />
+            </button>
+            <h2 className="title">{item.title}</h2>
+            <img src={item.thumbnail} alt={item.title} />
+            <p className="desc">{item.description}</p>
+            <p className="price">
+              Only for <span>{item.price}</span> $
+            </p>
+          </>
+        ) : (
+          <img src="/loader.svg" alt="loader" className="loader" />
+        )}
+      </div>
     </div>
   );
 }

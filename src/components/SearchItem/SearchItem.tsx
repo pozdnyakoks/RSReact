@@ -16,13 +16,9 @@ function SearchItem(props: TSearchItem) {
   return (
     <li className="list-item">
       <div onClick={clickHandler}>
-        <h2>
-          <span>title:</span> {props.title}
-        </h2>
-        <p>
-          <span>Description:</span> {props.description}
-        </p>
-        <img src={props.thumbnail} alt={props.title} />
+        <h2>{props.title}</h2>
+        <p>{props.description}</p>
+        {/* <img src={props.thumbnail} alt={props.title} /> */}
       </div>
     </li>
   );

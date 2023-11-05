@@ -1,0 +1,19 @@
+.list-item {
+  max-width: 600px;
+cursor: pointer;
+  transition: .3s ease;
+  padding: 20px;
+  border-radius: 20px;
+
+  &:hover {
+background-color: rgba(0,0,0,.3);
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}

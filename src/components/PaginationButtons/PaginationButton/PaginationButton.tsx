@@ -1,4 +1,5 @@
 import { SetURLSearchParams } from 'react-router-dom';
+import './PaginationButton.scss';
 
 export const PaginationButton = ({
   value,
