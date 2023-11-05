@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Search from './components/Search';
-import List from './components/List';
+import Search from './components/Search/Search';
+import List from './components/List/List';
 import ErrorBoundary from './components/ErrorBoundary';
-import ErrorButton from './components/ErrorButton';
-import { ChooseCount } from './components/ChooseCount';
+import ErrorButton from './components/ErrorButton/ErrorButton';
+import { ChooseCount } from './components/ChooseCount/ChooseCount';
 import { Outlet, useSearchParams } from 'react-router-dom';
 import { TData } from './utils/types';
-import { PaginationButton } from './components/PaginationButton';
+import { PaginationButton } from './components/PaginationButton/PaginationButton';
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();

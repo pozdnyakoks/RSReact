@@ -1,0 +1,32 @@
+.list {
+  align-self: flex-start;
+  text-align: left;
+
+
+  &-item {
+    color: #D0CEC8;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+
+    span {
+      font-weight: 800;
+      color: #B8B08D;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-weight: 500;
+    }
+
+    img {
+      max-height: 200px;
+      object-fit: contain;
+      align-self: start;
+    }
+  }
+
+}

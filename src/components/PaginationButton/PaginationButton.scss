@@ -1,0 +1,21 @@
+.pagination-btns {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+
+
+  button {
+    border: 1px solid red;
+    padding: 10px 15px;
+    font-size: 30px;
+    font-weight: 500;
+    color: black;
+    text-decoration: none;
+
+    .active {
+      background-color: #F29559;
+      border: none;
+    }
+
+  }
+}

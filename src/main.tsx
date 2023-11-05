@@ -10,7 +10,7 @@ import {
   // Route,
   // Link,
 } from 'react-router-dom';
-import ModalItem from './components/ModalItem';
+import ModalItem from './components/ModalItem/ModalItem';
 
 const router = createBrowserRouter([
   {

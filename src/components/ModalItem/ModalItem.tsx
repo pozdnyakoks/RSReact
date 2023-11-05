@@ -1,7 +1,8 @@
-import Close from './../assets/close.svg';
+import Close from './../../assets/close.svg';
 import { useSearchParams } from 'react-router-dom';
-import { TItem } from '../utils/types';
+import { TItem } from '../../utils/types';
 import { useState, useEffect } from 'react';
+import './ModalItem.scss';
 
 export default function ModalItem() {
   const [searchParams, setSearchParams] = useSearchParams();

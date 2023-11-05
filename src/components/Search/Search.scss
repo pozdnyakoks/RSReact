@@ -1,0 +1,39 @@
+.search {
+  margin-top: 20px;
+  height: 55px;
+  display: flex;
+  max-width: 500px;
+  align-items: center;
+  background-color: #B8B08D;
+  border-radius: 10px;
+  color: #202C39;
+  font-size: 20px;
+  line-height: normal;
+
+
+  &-input {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+
+    color: #202C39;
+    font-size: 20px;
+    line-height: normal;
+
+    &::placeholder {
+      opacity: 0.8;
+    }
+  }
+
+
+  &-btn {
+    height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: #F29559;
+    color: #202C39;
+    font-size: 20px;
+    line-height: normal;
+  }
+}

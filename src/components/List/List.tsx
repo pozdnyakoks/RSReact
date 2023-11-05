@@ -1,6 +1,7 @@
-import SearchItem from './SearchItem';
+import SearchItem from '../SearchItem/SearchItem';
+import './List.scss';
 
-import { TList, TSearchItem } from '../utils/types';
+import { TList, TSearchItem } from '../../utils/types';
 
 function List(props: TList) {
   if (props.isError) throw new Error('Error in url');

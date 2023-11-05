@@ -1,3 +1,5 @@
+import './ChooseCount.scss';
+
 export function ChooseCount({
   value,
   setValue,

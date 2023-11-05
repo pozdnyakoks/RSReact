@@ -1,6 +1,7 @@
 // import { Link } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
-import { TSearchItem } from '../utils/types';
+import { TSearchItem } from '../../utils/types';
+import './SearchItem.scss';
 
 function SearchItem(props: TSearchItem) {
   const [searchParams, setSearchParams] = useSearchParams();

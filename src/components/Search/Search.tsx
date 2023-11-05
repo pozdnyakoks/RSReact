@@ -1,4 +1,5 @@
 import React from 'react';
+import './Search.scss';
 
 function Search({
   value,
@@ -25,7 +26,7 @@ function Search({
   }
 
   return (
-    <div className="input-box">
+    <div className="search">
       <input
         value={value}
         onChange={(e) => handleChange(e)}
