@@ -24,3 +24,10 @@ export type TData = {
   skip: number;
   total: number;
 };
+
+export type TItem = {
+  title: string;
+  description: string;
+  price: number;
+  thumbnail: string;
+};

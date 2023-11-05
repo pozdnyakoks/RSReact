@@ -5,7 +5,7 @@ import List from './components/List';
 import ErrorBoundary from './components/ErrorBoundary';
 import ErrorButton from './components/ErrorButton';
 import { ChooseCount } from './components/ChooseCount';
-import { useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import { TData } from './utils/types';
 import { PaginationButton } from './components/PaginationButton';
 
@@ -55,6 +55,7 @@ function App() {
     } else {
       getData(value);
     }
+    console.log(searchParams);
     setSearchParams({ page: String(currentPage) });
   }, [pageItems, currentPage]);
 
@@ -106,6 +107,7 @@ function App() {
               ))}
           </div>
         )}
+        <Outlet />
       </ErrorBoundary>
     </div>
   );

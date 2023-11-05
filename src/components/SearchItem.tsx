@@ -1,10 +1,20 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { TSearchItem } from '../utils/types';
 
 function SearchItem(props: TSearchItem) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  function clickHandler() {
+    const curPage = searchParams.get('page');
+    if (curPage !== null) {
+      setSearchParams({ page: curPage, item: String(props.id) });
+    }
+  }
+
   return (
     <li className="list-item">
-      <Link to={`&details=${props.id}`}>
+      <div onClick={clickHandler}>
         <h2>
           <span>title:</span> {props.title}
         </h2>
@@ -12,7 +22,7 @@ function SearchItem(props: TSearchItem) {
           <span>Description:</span> {props.description}
         </p>
         <img src={props.thumbnail} alt={props.title} />
-      </Link>
+      </div>
     </li>
   );
 }

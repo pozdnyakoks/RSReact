@@ -161,6 +161,10 @@ button {
   justify-content: flex-end;
 }
 
+.modal.none {
+  display: none;
+}
+
 .modal-item {
   height: 100%;
   background-color: #B8B08D;
