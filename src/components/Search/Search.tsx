@@ -1,34 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Search.scss';
+import { SearchContext } from '../../contexts/searchContext';
 
 function Search({
-  value,
-  setState,
   getData,
   setCurrentPage,
 }: {
-  value: string;
-  setState: (value: string) => void;
   getData: (value: string) => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
+  const { searchValue, setSearchValue } = useContext(SearchContext);
   function handleClick(e: React.MouseEvent): void {
     e.preventDefault();
-    localStorage.setItem('searchItem', value.trim());
-    getData(value.trim());
-    setState(value.trim());
+    localStorage.setItem('searchItem', searchValue.trim());
+    getData(searchValue.trim());
+    setSearchValue(searchValue.trim());
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const newValue: string = e.target.value;
-    setState(newValue);
+    setSearchValue(newValue);
     setCurrentPage(1);
   }
 
   return (
     <div className="search">
       <input
-        value={value}
+        value={searchValue}
         onChange={(e) => handleChange(e)}
         type="text"
         className="search-input"
