@@ -19,15 +19,15 @@ function List(props: TList) {
       : null;
 
   return (
-    <ol className="list">
+    <>
       {props.isLoading ? (
         <img src="/loader.svg" alt="loader" className="loader" />
       ) : list !== null && list.length === 0 ? (
-        'Sorry, nothing is here'
+        <p className="empty-error-msg">Sorry, nothing is here :(</p>
       ) : (
-        list
+        <ol className="list">{list}</ol>
       )}
-    </ol>
+    </>
   );
 }
 

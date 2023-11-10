@@ -4,7 +4,7 @@ import List from './List/List';
 import ErrorBoundary from './ErrorBoundary';
 import ErrorButton from './ErrorButton/ErrorButton';
 import { ChooseCount } from './ChooseCount/ChooseCount';
-import { Outlet, useSearchParams, useNavigate } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import { TData } from './../utils/types';
 import errorMaker from './../utils/ErrorMaker';
 import PaginationButtons from './PaginationButtons/PaginationButtons';
@@ -20,8 +20,9 @@ function MainPage() {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [pageItems, setPageItems] = useState('15');
-  const [currentPage, setCurrentPage] = useState(1);
-  const navigate = useNavigate();
+  const current = searchParams.get('page') ?? '1';
+  const [currentPage, setCurrentPage] = useState(Number(current));
+  // const navigate = useNavigate();
 
   function getData(value: string): void {
     setIsLoading(true);
@@ -44,9 +45,9 @@ function MainPage() {
       });
   }
 
-  useEffect(() => {
-    navigate('/search');
-  }, []);
+  // useEffect(() => {
+  //   navigate('/search');
+  // }, []);
 
   useEffect((): void => {
     const lsValue: string | null = localStorage.getItem('searchItem');
@@ -85,7 +86,6 @@ function MainPage() {
           isError={error}
           isLoading={isLoading}
         />
-
         <Outlet />
       </ErrorBoundary>
     </div>

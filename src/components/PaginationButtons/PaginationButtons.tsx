@@ -13,7 +13,8 @@ export default function PaginationButtons({
   setSearchParams: SetURLSearchParams;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  return (
+  data.products.length !== 0;
+  return data.products.length !== 0 ? (
     <div className="pagination-btns">
       {Array(Math.ceil(data.total / data.limit))
         .fill(1)
@@ -27,5 +28,7 @@ export default function PaginationButtons({
           />
         ))}
     </div>
+  ) : (
+    <></>
   );
 }
