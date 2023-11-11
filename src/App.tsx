@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import './App.css';
 import MainPage from './components/MainPage';
@@ -6,9 +7,9 @@ import { DataContext } from './contexts/dataContext';
 import { TData } from './utils/types';
 
 function App() {
-  const [searchValue, setSearchValue] = useState(
-    localStorage.getItem('searchItem') ?? ''
-  );
+  const ls = localStorage.getItem('searchItem') || '';
+  const [searchValue, setSearchValue] = React.useState(ls);
+
   const [data, setData] = useState<TData | null>(null);
   return (
     <SearchContext.Provider value={{ searchValue, setSearchValue }}>
