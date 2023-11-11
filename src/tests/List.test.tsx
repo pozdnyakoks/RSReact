@@ -16,7 +16,6 @@ const mockData = [
     description: 'Description 2',
     thumbnail: 'thumbnail2.jpg',
   },
-  // Add more mock data as needed
 ];
 
 describe('List Component', () => {
