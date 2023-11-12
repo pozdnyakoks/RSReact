@@ -1,24 +1,19 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import List from '../components/List/List';
 import { BrowserRouter } from 'react-router-dom';
-
-const mockData = [
-  {
-    id: 1,
-    title: 'Card 1',
-    description: 'Description 1',
-    thumbnail: 'thumbnail1.jpg',
-  },
-  {
-    id: 2,
-    title: 'Card 2',
-    description: 'Description 2',
-    thumbnail: 'thumbnail2.jpg',
-  },
-];
+import { mockData } from '../utils/mockData';
 
 describe('List Component', () => {
+  it('displays an appropriate message if no cards are present', () => {
+    render(
+      <BrowserRouter>
+        <List data={[]} isLoading={false} isError={false} />
+      </BrowserRouter>
+    );
+    const emptyElement = screen.getByText('Sorry, nothing is here :(');
+    expect(emptyElement).toBeInTheDocument();
+  });
   it('renders the specified number of cards', () => {
     const { container } = render(
       <BrowserRouter>
