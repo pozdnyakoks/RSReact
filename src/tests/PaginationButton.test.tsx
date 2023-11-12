@@ -13,6 +13,6 @@ describe('Pagination component', () => {
 
     fireEvent.click(screen.getByText('2'));
     const searchParams = new URLSearchParams(window.location.search);
-    searchParams.get('page') === '2';
+    expect(searchParams.get('page') === '2');
   });
 });
