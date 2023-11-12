@@ -22,7 +22,6 @@ function MainPage() {
   const [pageItems, setPageItems] = useState('15');
   const current = searchParams.get('page') ?? '1';
   const [currentPage, setCurrentPage] = useState(Number(current));
-  // const navigate = useNavigate();
 
   function getData(value: string): void {
     setIsLoading(true);
@@ -44,10 +43,6 @@ function MainPage() {
         setIsLoading(false);
       });
   }
-
-  // useEffect(() => {
-  //   navigate('/search');
-  // }, []);
 
   useEffect((): void => {
     const lsValue: string | null = localStorage.getItem('searchItem');

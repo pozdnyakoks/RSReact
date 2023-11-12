@@ -1,6 +1,4 @@
 import { render, screen } from '@testing-library/react';
-
-// import SearchItem from '../components/SearchItem/SearchItem';
 import { BrowserRouter } from 'react-router-dom';
 import ModalItemMock from '../utils/ModalItemMock';
 

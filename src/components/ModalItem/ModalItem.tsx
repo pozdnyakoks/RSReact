@@ -29,11 +29,7 @@ export default function ModalItem() {
   }
   0;
   return (
-    <div
-      className={`modal ${showModal ? '' : 'none'}`}
-      onClick={clickHandler}
-      // alt="modal"
-    >
+    <div className={`modal ${showModal ? '' : 'none'}`} onClick={clickHandler}>
       <div className="modal-item" onClick={(e) => e.stopPropagation()}>
         {item ? (
           <>

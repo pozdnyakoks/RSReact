@@ -4,7 +4,6 @@ import SearchItem from '../components/SearchItem/SearchItem';
 import { BrowserRouter } from 'react-router-dom';
 import { mockData } from '../utils/mockData';
 import ModalItemMock from '../utils/ModalItemMock';
-// import ModalItem from '../components/ModalItem/ModalItem';
 
 const cardInfo = mockData[0];
 
@@ -37,7 +36,6 @@ describe('Card component', () => {
         />
       </BrowserRouter>
     );
-    // const handleClick = vi.fn();
     const modal = container.getElementsByClassName('modal')[0];
     fireEvent.click(screen.getByText(cardInfo.title));
 

@@ -7,13 +7,11 @@ export default function PaginationButtonMock() {
   const [, setCurrentPage] = useState(1);
 
   return (
-    // <BrowserRouter>
     <PaginationButton
       searchParams={searchParams}
       setSearchParams={setSearchParams}
       value="2"
       setCurrentPage={setCurrentPage}
     />
-    // </BrowserRouter>
   );
 }
