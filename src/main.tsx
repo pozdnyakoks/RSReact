@@ -13,8 +13,8 @@ import NotFound from './components/NotFound/NotFound';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index element={<ModalItem />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/" element={<ModalItem />} />
     </Route>
   )
 );

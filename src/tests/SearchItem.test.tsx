@@ -7,7 +7,7 @@ import ModalItemMock from '../utils/ModalItemMock';
 
 const cardInfo = mockData[0];
 
-describe('Card component', () => {
+describe('Search Item', () => {
   it('enders the relevant card data', () => {
     render(
       <BrowserRouter>
