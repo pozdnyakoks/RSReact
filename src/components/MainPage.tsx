@@ -8,20 +8,24 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 import { TData } from './../utils/types';
 import errorMaker from './../utils/ErrorMaker';
 import PaginationButtons from './PaginationButtons/PaginationButtons';
-import { useContext } from 'react';
-import { SearchContext } from '../contexts/searchContext';
-import { DataContext } from '../contexts/dataContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store/store';
+import { setList } from '../store/slices/list.slice';
 
 function MainPage() {
-  const { searchValue, setSearchValue } = useContext(SearchContext);
-  const { data, setData } = useContext(DataContext);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [pageItems, setPageItems] = useState('15');
   const current = searchParams.get('page') ?? '1';
   const [currentPage, setCurrentPage] = useState(Number(current));
+
+  const dispatch = useDispatch();
+
+  const searchValue = useSelector(
+    (state: RootState) => state.searchValue.searchValue
+  );
+  const data = useSelector((state: RootState) => state.list.list);
 
   function getData(value: string): void {
     setIsLoading(true);
@@ -39,19 +43,13 @@ function MainPage() {
         return res.json();
       })
       .then((data: TData) => {
-        setData(data);
+        dispatch(setList(data));
         setIsLoading(false);
       });
   }
 
   useEffect((): void => {
-    const lsValue: string | null = localStorage.getItem('searchItem');
-    if (lsValue !== null) {
-      setSearchValue(lsValue);
-      getData(lsValue);
-    } else {
-      getData(searchValue);
-    }
+    getData(searchValue);
     setSearchParams({ page: String(currentPage) });
   }, [pageItems, currentPage]);
 

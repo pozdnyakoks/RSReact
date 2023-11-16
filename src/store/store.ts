@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import searchValueReducer from './slices/searchValue.slice';
+import listReducer from './slices/list.slice';
 
 const store = configureStore({
   reducer: {
     searchValue: searchValueReducer,
+    list: listReducer,
   },
 });
 

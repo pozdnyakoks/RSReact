@@ -16,9 +16,7 @@ export const searchValueSlice = createSlice({
   reducers: {
     setSearchValue: (state, { payload }: { payload: string }) => {
       state.searchValue = payload;
-      console.log(state.searchValue);
       localStorage.setItem('searchValue', state.searchValue);
-      console.log(localStorage.getItem('searchValue'));
     },
   },
 });
