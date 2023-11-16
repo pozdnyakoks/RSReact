@@ -1,6 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './Search.scss';
-import { SearchContext } from '../../contexts/searchContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchValue } from '../../store/slices/searchValue.slice';
+import { RootState } from '../../store/store';
 
 function Search({
   getData,
@@ -9,17 +11,19 @@ function Search({
   getData: (value: string) => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const { searchValue, setSearchValue } = useContext(SearchContext);
+  const searchValue = useSelector(
+    (state: RootState) => state.searchValue.searchValue
+  );
+  const dispatch = useDispatch();
   function handleClick(e: React.MouseEvent): void {
     e.preventDefault();
-    localStorage.setItem('searchItem', searchValue.trim());
+    dispatch(setSearchValue(searchValue.trim()));
     getData(searchValue.trim());
-    setSearchValue(searchValue.trim());
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const newValue: string = e.target.value;
-    setSearchValue(newValue);
+    dispatch(setSearchValue(newValue));
     setCurrentPage(1);
   }
 
