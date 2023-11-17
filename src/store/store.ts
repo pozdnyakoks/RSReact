@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import searchValueReducer from './slices/searchValue.slice';
 import listReducer from './slices/list.slice';
+import modalModeReducer from './slices/modalMode.slice';
 
 const store = configureStore({
   reducer: {
     searchValue: searchValueReducer,
     list: listReducer,
+    modalMode: modalModeReducer,
   },
 });
 

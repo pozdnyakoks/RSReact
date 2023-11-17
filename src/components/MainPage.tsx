@@ -50,7 +50,12 @@ function MainPage() {
 
   useEffect((): void => {
     getData(searchValue);
-    setSearchParams({ page: String(currentPage) });
+    const item = searchParams.get('item');
+    if (item) {
+      setSearchParams({ page: String(currentPage), item: item });
+    } else {
+      setSearchParams({ page: String(currentPage) });
+    }
   }, [pageItems, currentPage]);
 
   return (

@@ -3,15 +3,22 @@ import { useSearchParams } from 'react-router-dom';
 import { TItem } from '../../utils/types';
 import { useState, useEffect } from 'react';
 import './ModalItem.scss';
+import { setModalMode } from '../../store/slices/modalMode.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export default function ModalItem() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [item, setItem] = useState<TItem | null>(null);
-  const [showModal, setShowModal] = useState(false);
+
+  const dispatch = useDispatch();
+  const modalMode = useSelector(
+    (state: RootState) => state.modalMode.modalMode
+  );
 
   useEffect(() => {
     const product: string | null = searchParams.get('item');
-    product ? setShowModal(true) : setShowModal(false);
+    product ? dispatch(setModalMode(true)) : dispatch(setModalMode(false));
     if (product) {
       const url = `https://dummyjson.com/products/${product}`;
       fetch(url)
@@ -29,7 +36,7 @@ export default function ModalItem() {
   }
   0;
   return (
-    <div className={`modal ${showModal ? '' : 'none'}`} onClick={clickHandler}>
+    <div className={`modal ${modalMode ? '' : 'none'}`} onClick={clickHandler}>
       <div className="modal-item" onClick={(e) => e.stopPropagation()}>
         {item ? (
           <>
