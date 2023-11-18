@@ -4,7 +4,7 @@ import './List.scss';
 import { TList, TSearchItem } from '../../utils/types';
 
 function List(props: TList) {
-  if (props.isError) throw new Error('Error in url');
+  if (props.isError !== undefined) throw new Error('Error in url');
   const list: JSX.Element[] | null =
     props.data !== null
       ? props.data.map((el: TSearchItem) => (

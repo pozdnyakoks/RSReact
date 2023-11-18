@@ -1,20 +1,21 @@
 import { SetURLSearchParams } from 'react-router-dom';
 import './PaginationButton.scss';
+import { setCurPage } from '../../../store/slices/curPage.slice';
+import { useDispatch } from 'react-redux';
 
 export const PaginationButton = ({
   value,
   searchParams,
   setSearchParams,
-  setCurrentPage,
 }: {
   value: string;
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }) => {
+  const dispatch = useDispatch();
   function changePage() {
     setSearchParams({ page: value });
-    setCurrentPage(Number(value));
+    dispatch(setCurPage(value));
   }
 
   const isCurrent: boolean = searchParams.get('page') === value;

@@ -6,12 +6,10 @@ export default function PaginationButtons({
   data,
   searchParams,
   setSearchParams,
-  setCurrentPage,
 }: {
   data: TData;
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
   data.products.length !== 0;
   return data.products.length !== 0 ? (
@@ -24,7 +22,6 @@ export default function PaginationButtons({
             setSearchParams={setSearchParams}
             key={index}
             value={String(index + 1)}
-            setCurrentPage={setCurrentPage}
           />
         ))}
     </div>

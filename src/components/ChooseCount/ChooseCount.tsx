@@ -1,17 +1,17 @@
+import { useDispatch, useSelector } from 'react-redux';
 import './ChooseCount.scss';
+import { RootState } from '../../store/store';
+import { setPageItems } from '../../store/slices/pageItems.slice';
+import { setCurPage } from '../../store/slices/curPage.slice';
 
-export function ChooseCount({
-  value,
-  setValue,
-  setPage,
-}: {
-  value: string;
-  setValue: (ev: React.ChangeEvent<HTMLInputElement>) => void;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-}) {
+export function ChooseCount() {
+  const dispatch = useDispatch();
+  const value = String(
+    useSelector((state: RootState) => state.pagesItems.pageItems)
+  );
   const changeValue = (ev: React.ChangeEvent<HTMLInputElement>): void => {
-    setValue(ev);
-    setPage(1);
+    dispatch(setCurPage('1'));
+    dispatch(setPageItems(Number(ev.target.value)));
   };
 
   return (
