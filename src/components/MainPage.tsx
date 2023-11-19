@@ -7,9 +7,10 @@ import { ChooseCount } from './ChooseCount/ChooseCount';
 import { Outlet, useSearchParams } from 'react-router-dom';
 import errorMaker from './../utils/ErrorMaker';
 import PaginationButtons from './PaginationButtons/PaginationButtons';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { useGetItemsNavQuery } from '../services/data';
+import { setList } from '../store/slices/list.slice';
 
 function MainPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,6 +31,9 @@ function MainPage() {
     value: value,
   });
 
+  const dispatch = useDispatch();
+  if (data !== undefined) dispatch(setList(data));
+
   useEffect((): void => {
     const item = searchParams.get('item');
     if (item) {
@@ -47,7 +51,6 @@ function MainPage() {
         <ErrorButton onClick={errorMaker} />
         {data !== undefined && (
           <PaginationButtons
-            data={data}
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />

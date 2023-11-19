@@ -1,20 +1,23 @@
 import { SetURLSearchParams } from 'react-router-dom';
 import { PaginationButton } from './PaginationButton/PaginationButton';
-import { TData } from '../../utils/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export default function PaginationButtons({
-  data,
   searchParams,
   setSearchParams,
 }: {
-  data: TData;
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
 }) {
-  data.products.length !== 0;
-  return data.products.length !== 0 ? (
+  const data = useSelector((state: RootState) => state.list.list);
+  const pageItems = useSelector(
+    (state: RootState) => state.pagesItems.pageItems
+  );
+
+  return data && data.products.length !== 0 ? (
     <div className="pagination-btns">
-      {Array(Math.ceil(data.total / data.limit))
+      {Array(Math.ceil(data.total / pageItems))
         .fill(1)
         .map((el, index) => (
           <PaginationButton
