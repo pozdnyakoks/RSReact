@@ -1,12 +1,12 @@
 // import { useEffect } from 'react';
 import Search from '@/components/Search/Search';
 import List from '@/components/List/List';
-// import ErrorBoundary from './ErrorBoundary';
-// import ErrorButton from './ErrorButton/ErrorButton';
-// import { ChooseCount } from './ChooseCount/ChooseCount';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import ErrorButton from '@/components/ErrorButton/ErrorButton';
+import { ChooseCount } from '@/components/ChooseCount/ChooseCount';
 // import { Outlet, useSearchParams } from 'react-router-dom';
-// import errorMaker from './../utils/ErrorMaker';
-// import PaginationButtons from './PaginationButtons/PaginationButtons';
+import errorMaker from './../utils/ErrorMaker';
+import PaginationButtons from '@/components/PaginationButtons/PaginationButtons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { useGetItemsNavQuery } from '../services/data';
@@ -46,17 +46,17 @@ function Home() {
   return (
     <div className="container">
       <Search />
-      {/* <ChooseCount /> */}
-      {/* <ErrorBoundary>
+      <ChooseCount />
+      <ErrorBoundary>
         <ErrorButton onClick={errorMaker} />
         {data !== undefined && (
           <PaginationButtons
-            searchParams={searchParams}
-            setSearchParams={setSearchParams}
+          // searchParams={searchParams}
+          // setSearchParams={setSearchParams}
           />
         )}
-        <Outlet />
-      </ErrorBoundary> */}
+        {/* <Outlet /> */}
+      </ErrorBoundary>
       <List
         data={data !== undefined ? data.products : null}
         isError={error}
