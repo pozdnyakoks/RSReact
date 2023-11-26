@@ -6,6 +6,7 @@ import '@/styles/ChooseCount.scss';
 import '@/styles/PaginationButton.scss';
 import '@/styles/ErrorButton.scss';
 import '@/styles/NotFound.scss';
+import '@/styles/ModalItem.scss';
 
 import type { AppProps } from 'next/app';
 import { wrapper } from '@/store/store';

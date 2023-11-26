@@ -1,4 +1,3 @@
-// import { SetURLSearchParams } from 'react-router-dom';
 import { PaginationButton } from './PaginationButton/PaginationButton';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';

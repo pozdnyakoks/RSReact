@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 export const PaginationButton = ({ value }: { value: string }) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  function changePage() {
+  async function changePage() {
     router.push({
       query: { page: value },
     });
