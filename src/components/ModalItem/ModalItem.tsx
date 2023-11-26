@@ -1,37 +1,51 @@
 import Close from './../../assets/close.svg';
-// import { useSearchParams } from 'react-router-dom';
+
 import { TItem } from '../../utils/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './ModalItem.scss';
-// import { setModalMode } from '../../store/slices/modalMode.slice';
-import { useSelector } from 'react-redux';
+import { setModalMode } from '../../store/slices/modalMode.slice';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 export default function ModalItem() {
   // const [searchParams, setSearchParams] = useSearchParams();
   const [item, setItem] = useState<TItem | null>(null);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const modalMode = useSelector(
     (state: RootState) => state.modalMode.modalMode
   );
+  const router = useRouter();
+  console.log('out');
+  console.log(router.query);
 
-  // useEffect(() => {
-  //   // const product: string | null = searchParams.get('item');
-  //   product ? dispatch(setModalMode(true)) : dispatch(setModalMode(false));
-  //   if (product) {
-  //     const url = `https://dummyjson.com/products/${product}`;
-  //     fetch(url)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setItem(data);
-  //       });
-  //   }
-  // }, [searchParams]);
+  useEffect(() => {
+    const { item } = router.query;
+    // const { item }: string | null = searchParams.get('item');
+    item ? dispatch(setModalMode(true)) : dispatch(setModalMode(false));
+    if (item) {
+      const url = `https://dummyjson.com/products/${item}`;
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          setItem(data);
+        });
+    }
+  }, [router.query]);
 
   function clickHandler() {
     setItem(null);
+    delete router.query.item;
+    router.push(
+      {
+        pathname: router.pathname,
+        query: { ...router.query },
+      },
+      undefined,
+      {}
+    );
     // searchParams.delete('item');
     // setSearchParams(searchParams);
   }

@@ -1,20 +1,19 @@
-// import { useEffect } from 'react';
 import Search from '@/components/Search/Search';
 import List from '@/components/List/List';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import ErrorButton from '@/components/ErrorButton/ErrorButton';
 import { ChooseCount } from '@/components/ChooseCount/ChooseCount';
-// import { Outlet, useSearchParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import errorMaker from './../utils/ErrorMaker';
 import PaginationButtons from '@/components/PaginationButtons/PaginationButtons';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { useGetItemsNavQuery } from '../services/data';
-// import { setList } from '../store/slices/list.slice';
+import { setList } from '../store/slices/list.slice';
 
 function Home() {
-  // const [searchParams, setSearchParams] = useSearchParams();
-
+  const router = useRouter();
   const value = useSelector(
     (state: RootState) => state.searchValue.searchValue
   );
@@ -31,17 +30,21 @@ function Home() {
     value: value,
   });
 
-  // const dispatch = useDispatch();
-  // if (data !== undefined) dispatch(setList(data));
+  const dispatch = useDispatch();
+  if (data !== undefined) dispatch(setList(data));
 
-  // useEffect((): void => {
-  //   const item = searchParams.get('item');
-  //   if (item) {
-  //     setSearchParams({ page: String(currentPage), item: item });
-  //   } else {
-  //     setSearchParams({ page: String(currentPage) });
-  //   }
-  // }, [pageItems, currentPage]);
+  const { item } = router.query;
+  useEffect((): void => {
+    if (item !== undefined) {
+      router.push({
+        query: { page: String(currentPage), item: item },
+      });
+    } else {
+      router.push({
+        query: { page: String(currentPage) },
+      });
+    }
+  }, [pageItems, currentPage]);
 
   return (
     <div className="container">

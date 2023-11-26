@@ -1,25 +1,22 @@
-// import { SetURLSearchParams } from 'react-router-dom';
 import { setCurPage } from '../../../store/slices/curPage.slice';
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
-export const PaginationButton = ({
-  value, // searchParams, // setSearchParams,
-}: {
-  value: string;
-  // searchParams: URLSearchParams;
-  // setSearchParams: SetURLSearchParams;
-}) => {
+export const PaginationButton = ({ value }: { value: string }) => {
+  const router = useRouter();
   const dispatch = useDispatch();
   function changePage() {
-    // setSearchParams({ page: value });
+    router.push({
+      query: { page: value },
+    });
     dispatch(setCurPage(value));
   }
+  const { page } = router.query;
 
-  // const isCurrent: boolean = searchParams.get('page') === value;
+  const isCurrent: boolean = page === value;
 
   return (
-    <button onClick={() => changePage()}>
-      {/* <button onClick={() => changePage()} className={isCurrent ? 'active' : ''}> */}
+    <button onClick={() => changePage()} className={isCurrent ? 'active' : ''}>
       {value}
     </button>
   );

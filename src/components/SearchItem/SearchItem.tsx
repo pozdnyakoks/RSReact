@@ -1,22 +1,22 @@
-// import { useSearchParams } from 'react-router-dom';
 import { TSearchItem } from '../../utils/types';
+import { useRouter } from 'next/router';
 
-// import { setModalMode } from '../../store/slices/modalMode.slice';
-// import { useDispatch } from 'react-redux';
+import { setModalMode } from '../../store/slices/modalMode.slice';
+import { useDispatch } from 'react-redux';
 
 function SearchItem(props: TSearchItem) {
-  // const [searchParams, setSearchParams] = useSearchParams();
-
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   function clickHandler(): void {
-    console.log('click');
-    //   const curPage: string | null = searchParams.get('page');
-    //   if (curPage !== null) {
-    //     setSearchParams({ page: curPage, item: String(props.id) });
-    //     dispatch(setModalMode(true));
+    const { page } = router.query;
+    if (page !== undefined) {
+      router.push({
+        query: { page: page, item: String(props.id) },
+      });
+      dispatch(setModalMode(true));
+    }
   }
-  // }
 
   return (
     <li className="list-item">

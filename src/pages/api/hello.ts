@@ -1,13 +1,24 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next';
+// import {
+//   getPokemonByName,
+//   getRunningQueriesThunk,
+// } from '../../../lib/pokemonApi';
 
-type Data = {
-  name: string;
-};
+// import { wrapper } from '../../../lib/store';
+// import Pokemon from '../[name]';
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-  res.status(200).json({ name: 'John Doe' });
-}
+// export default Pokemon;
+
+// export const getServerSideProps = wrapper.getServerSideProps(
+//   (store) => async (context) => {
+//     const name = context.params?.name;
+//     if (typeof name === 'string') {
+//       store.dispatch(getPokemonByName.initiate(name));
+//     }
+
+//     await Promise.all(store.dispatch(getRunningQueriesThunk()));
+
+//     return {
+//       props: {},
+//     };
+//   }
+// );
