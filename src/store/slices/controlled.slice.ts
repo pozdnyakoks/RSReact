@@ -25,15 +25,15 @@
 //   country: ''
 // };
 
-// // export const controlledSlice = createSlice({
-// //   name: 'controlled',
-// //   initialState,
-// //   reducers: {
-// //     setControlled: (state, { payload }: { payload: controlledState }) => {
-// //       // state[key] = payload;
-// //     },
-// //   },
-// // });
+// export const controlledSlice = createSlice({
+//   name: 'controlled',
+//   initialState,
+//   reducers: {
+//     setControlled: (state, { payload }: { payload: controlledState }) => {
+//       // state[key] = payload;
+//     },
+//   },
+// });
 
 // export const { setControlled } = controlledSlice.actions;
 

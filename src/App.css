@@ -1,0 +1,52 @@
+.label {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.block {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.input {
+  outline: none;
+  background-color: transparent;
+  padding: 7px 7px 7px 0;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #3c3744;
+  width: 100%;
+}
+
+.error {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 60%;
+  color: red;
+}
+
+.radios {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.radio {
+  display: flex;
+  gap: 10px;
+}
