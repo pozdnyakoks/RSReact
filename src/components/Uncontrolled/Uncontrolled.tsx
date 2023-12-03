@@ -2,8 +2,10 @@ import './Uncontrolled.scss';
 import { useRef, useState } from 'react';
 import { schema } from '../../utils/validation';
 import { ValidationError } from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 export const Uncontrolled = () => {
+  const navigate = useNavigate();
   const onSubmitFunc = async (ev: React.FormEvent) => {
     ev.preventDefault();
     setNameError('');
@@ -27,6 +29,8 @@ export const Uncontrolled = () => {
         terms: termsInput.current?.checked,
         picture: img
       }, { abortEarly: false });
+      console.log('good');
+      navigate("/")
     }
     catch (error) {
       if (error instanceof ValidationError) {
