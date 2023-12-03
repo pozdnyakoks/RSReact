@@ -2,17 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { TStoreForm } from '../../utils/types';
 
 const initialState: TStoreForm[] = []
-// {
-  // name: '',
-  // age: 0,
-  // email: '',
-  // password: '',
-  // confirmPassword: '',
-  // gender: 'male',
-  // terms: false,
-  // picture: '',
-  // country: ''
-// };
 
 export const formSlice = createSlice({
   name: 'form',
@@ -20,7 +9,6 @@ export const formSlice = createSlice({
   reducers: {
     addForm: (state, { payload }: { payload: TStoreForm }) => {
       state.push(payload)
-      console.log(state)
     },
   },
 });

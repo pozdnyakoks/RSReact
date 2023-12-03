@@ -23,7 +23,9 @@ export const schema = yup.object().shape({
   name: yup.string().required().matches(/^[A-ZА-ЯЁ].*$/, { message: 'it should start from capital letter' }),
   age: yup.number().required().moreThan(0),
   email: yup.string().required().email(),
-  password: yup.string().required().matches(/[0-9]/, getCharacterValidationError("digit"))
+  password: yup.string().required()
+    .matches(/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\|=]/, getCharacterValidationError("special"))
+    .matches(/[0-9]/, getCharacterValidationError("digit"))
     .matches(/[a-z]/, getCharacterValidationError("lowercase"))
     .matches(/[A-Z]/, getCharacterValidationError("uppercase")),
   confirmPassword: yup.string()

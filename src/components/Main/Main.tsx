@@ -6,7 +6,6 @@ export const Main = () => {
   const list = useSelector(
     (state: RootState) => state.form
   )
-  console.log(list)
   return (
     <section>
       <div className="container">
@@ -20,6 +19,7 @@ export const Main = () => {
                 <p>Email: {el.email}</p>
                 <p>Password: {el.password}</p>
                 <p>Gender: {el.gender}</p>
+                <p>Accept T&C: {el.terms}</p>
                 <img src={el.picture} />
               </div>
             ))

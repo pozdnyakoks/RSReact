@@ -7,12 +7,17 @@ import { schema } from '../../utils/validation';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addForm } from '../../store/slices/form.slice';
+import { useState } from 'react';
+import { changePass } from '../../utils/passwordStrength';
+import { textColor } from '../../utils/passwordStrength';
 
 export const Controlled = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { register, handleSubmit, formState: { errors } } = useForm(
+  const [passErCount, setPassErCount] = useState<number>(-1);
+
+  const { register, handleSubmit, formState } = useForm(
     {
       resolver: yupResolver(schema),
       mode: 'onChange',
@@ -44,31 +49,32 @@ export const Controlled = () => {
           <div className="block">
             <label htmlFor="name" className="label">Name</label>
             <input className="input" id="name" type="text" {...register('name')} />
-            <p className="error">{errors.name?.message}</p>
+            <p className="error">{formState.errors.name?.message}</p>
           </div>
 
           <div className="block">
             <label htmlFor="age" className="label">Age</label>
             <input className="input" id="age" type="text" {...register("age")} />
-            <p className="error">{errors.age?.message}</p>
+            <p className="error">{formState.errors.age?.message}</p>
           </div>
 
           <div className="block">
             <label htmlFor="email" className="label">Email</label>
             <input className="input" id="email" type="text" {...register("email")} />
-            <p className="error">{errors.email?.message}</p>
+            <p className="error">{formState.errors.email?.message}</p>
           </div>
 
           <div className="block">
-            <label htmlFor="password" className="label">Password</label>
-            <input className="input" id="password" type="text" {...register("password")} />
-            <p className="error">{errors.password?.message}</p>
+            <label htmlFor="password" className="label" style={{ color: textColor(passErCount) }}>Password</label>
+            <input className="input" id="password" type="text" {...register("password",
+             {onChange: (ev) => changePass(ev, setPassErCount)})}/>
+            <p className="error">{formState.errors.password?.message}</p>
           </div>
 
           <div className="block">
             <label htmlFor="checkPassword" className="label">Confirm Password</label>
             <input className="input" id="confirmPassword" type="text" {...register("confirmPassword")} />
-            <p className="error">{errors.confirmPassword?.message}</p>
+            <p className="error">{formState.errors.confirmPassword?.message}</p>
           </div>
 
           <div className="label">Gender</div>
@@ -86,17 +92,17 @@ export const Controlled = () => {
           <div className="block flex">
             <input type="checkbox" id="terms"  {...register("terms")} />
             <label htmlFor="terms" className="label">Accept Terms and Conditions </label>
-            <p className="error">{errors.terms?.message}</p>
+            <p className="error">{formState.errors.terms?.message}</p>
           </div>
 
           <div className="block">
             <label htmlFor="picture" className="label" style={{ marginBottom: '20px' }}>Upload picture</label>
             <input type="file" id="picture" accept="image/png, image/jpeg" {...register("picture")} />
-            <p className="error">{errors.picture?.message}</p>
+            <p className="error">{formState.errors.picture?.message}</p>
           </div>
           {/* countries */}
 
-          <button className="btn">Submit</button>
+          <button className="btn" disabled={!formState.isValid}>Submit</button>
         </form>
       </div >
     </section >

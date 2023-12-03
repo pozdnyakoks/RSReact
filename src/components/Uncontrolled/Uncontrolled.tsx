@@ -5,6 +5,7 @@ import { ValidationError } from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addForm } from '../../store/slices/form.slice';
+import { changePass, textColor } from '../../utils/passwordStrength';
 
 export const Uncontrolled = () => {
   const dispatch = useDispatch();
@@ -38,9 +39,7 @@ export const Uncontrolled = () => {
         reader.readAsDataURL(img[0])
         reader.onloadend = () => {
           const base64string = reader.result
-          console.log(nameInput.current?.value)
           if (typeof base64string === 'string') {
-            console.log(nameInput.current?.value)
             const formData = {
               name: nameInput.current!.value,
               age: Number(ageInput.current!.value),
@@ -51,7 +50,6 @@ export const Uncontrolled = () => {
               terms: termsInput.current!.checked,
               picture: base64string
             }
-            console.log(formData)
             dispatch(addForm(formData))
             navigate("/")
           }
@@ -93,6 +91,8 @@ export const Uncontrolled = () => {
   const [termsError, setTermsError] = useState('');
   const [imageError, setImageError] = useState('');
 
+  const [passErCount, setPassErCount] = useState<number>(-1);
+
   return (
     <section>
       <div className="container">
@@ -119,8 +119,8 @@ export const Uncontrolled = () => {
           </div>
 
           <div className="block">
-            <label htmlFor="password" className="label">Password</label>
-            <input className="input" id="password" ref={passwordInput} type="text" />
+            <label htmlFor="password" style={{ color: textColor(passErCount) }} className="label" >Password</label>
+            <input className="input" id="password" ref={passwordInput} type="text" onChange={(ev) => changePass(ev, setPassErCount)} />
             <p className="error">{passwordError}</p>
           </div>
 

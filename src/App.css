@@ -58,6 +58,9 @@ form {
   color: #B4C5E4;
 }
 
+.btn:disabled {
+  opacity: 0.5;
+}
 .formList {
   gap: 15px;
   display: flex;
