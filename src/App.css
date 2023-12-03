@@ -57,3 +57,53 @@ form {
   font-size: 20px;
   color: #B4C5E4;
 }
+
+.formList {
+  gap: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-item {
+  padding: 15px;
+  border: 1px solid #B4C5E4;
+  transition: .3s ease;
+}
+
+.form-item:last-child {
+  border: 3px solid red;
+  animation: newAnim 2s ease;
+}
+
+.form-item p {
+  margin-bottom: 10px;
+}
+
+@keyframes newAnim {
+  0% {
+    border-color: red;
+  }
+
+  20% {
+    border-color: transparent;
+  }
+
+  40% {
+    border-color: red;
+  }
+
+  60% {
+    border-color: transparent
+  }
+
+  80% {
+    border-color: red;
+  }
+
+  100% {
+    border-color: #B4C5E4;
+  }
+}

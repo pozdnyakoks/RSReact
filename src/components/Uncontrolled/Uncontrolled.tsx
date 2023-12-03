@@ -3,8 +3,11 @@ import { useRef, useState } from 'react';
 import { schema } from '../../utils/validation';
 import { ValidationError } from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addForm } from '../../store/slices/form.slice';
 
 export const Uncontrolled = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const onSubmitFunc = async (ev: React.FormEvent) => {
     ev.preventDefault();
@@ -17,7 +20,7 @@ export const Uncontrolled = () => {
     setImageError('');
 
     try {
-      let img = null;
+      let img: FileList | null | undefined = null;
       if (imageInput.current?.files !== null) img = imageInput.current?.files;
       await schema.validate({
         name: nameInput.current?.value,
@@ -28,9 +31,32 @@ export const Uncontrolled = () => {
         gender: genderInput.current?.value,
         terms: termsInput.current?.checked,
         picture: img
-      }, { abortEarly: false });
-      console.log('good');
-      navigate("/")
+      }, { abortEarly: false })
+
+      const reader = new FileReader();
+      if (img !== undefined && img !== null) {
+        reader.readAsDataURL(img[0])
+        reader.onloadend = () => {
+          const base64string = reader.result
+          console.log(nameInput.current?.value)
+          if (typeof base64string === 'string') {
+            console.log(nameInput.current?.value)
+            const formData = {
+              name: nameInput.current!.value,
+              age: Number(ageInput.current!.value),
+              email: emailInput.current!.value,
+              password: passwordInput.current!.value,
+              confirmPassword: confirmPasswordInput.current!.value,
+              gender: genderInput.current!.value,
+              terms: termsInput.current!.checked,
+              picture: base64string
+            }
+            console.log(formData)
+            dispatch(addForm(formData))
+            navigate("/")
+          }
+        }
+      }
     }
     catch (error) {
       if (error instanceof ValidationError) {

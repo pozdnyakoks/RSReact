@@ -5,11 +5,14 @@ import { TForm } from '../../utils/types';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from '../../utils/validation';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addForm } from '../../store/slices/form.slice';
 
 export const Controlled = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm(
+  const { register, handleSubmit, formState: { errors } } = useForm(
     {
       resolver: yupResolver(schema),
       mode: 'onChange',
@@ -17,10 +20,19 @@ export const Controlled = () => {
   );
 
   const onSubmitFunc = (data: TForm) => {
-    console.log(data)
-    reset();
-    navigate('/')
-
+    const reader = new FileReader();
+    reader.readAsDataURL(data.picture[0])
+    reader.onloadend = () => {
+      const base64string = reader.result
+      if (typeof base64string === 'string') {
+        const formData = {
+          ...data,
+          picture: base64string
+        }
+        dispatch(addForm(formData))
+        navigate('/')
+      }
+    }
   }
 
   return (
