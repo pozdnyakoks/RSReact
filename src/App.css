@@ -1,0 +1,112 @@
+.label {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.block {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.input {
+  outline: none;
+  background-color: transparent;
+  padding: 7px 7px 7px 0;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #3c3744;
+  width: 100%;
+}
+
+.error {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 60%;
+  color: red;
+}
+
+.radios {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.radio {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  background-color: #3c3744;
+  padding: 10px 20px;
+  font-size: 20px;
+  color: #B4C5E4;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+}
+.formList {
+  gap: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-item {
+  padding: 15px;
+  border: 1px solid #B4C5E4;
+  transition: .3s ease;
+}
+
+.form-item:last-child {
+  border: 3px solid red;
+  animation: newAnim 2s ease;
+}
+
+.form-item p {
+  margin-bottom: 10px;
+}
+
+@keyframes newAnim {
+  0% {
+    border-color: red;
+  }
+
+  20% {
+    border-color: transparent;
+  }
+
+  40% {
+    border-color: red;
+  }
+
+  60% {
+    border-color: transparent
+  }
+
+  80% {
+    border-color: red;
+  }
+
+  100% {
+    border-color: #B4C5E4;
+  }
+}
